@@ -18,12 +18,6 @@ plt.style.use('seaborn-v0_8')
 sns.set_palette("husl")
 
 class AIAdoptionAnalyzer:
-    """
-    Comprehensive AI Tool Adoption Analysis Class
-    
-    This class performs advanced statistical analysis on AI tool adoption data,
-    including predictive modeling, clustering, and business intelligence insights.
-    """
     
     def __init__(self, csv_file_path):
         """Initialize the analyzer with data loading and basic preprocessing."""
@@ -38,20 +32,17 @@ class AIAdoptionAnalyzer:
         print(f"Missing values per column:\n{self.df.isnull().sum()}")
         print(f"Data types:\n{self.df.dtypes}")
         
-        # Handle missing values
         numeric_columns = ['adoption_rate', 'daily_active_users']
         for col in numeric_columns:
             if col in self.df.columns:
                 self.df[col] = self.df[col].fillna(self.df[col].median())
-        
-        # Clean text columns
+      
         text_columns = ['country', 'industry', 'ai_tool', 'user_feedback', 'age_group', 'company_size']
         for col in text_columns:
             if col in self.df.columns:
                 self.df[col] = self.df[col].fillna('Unknown')
                 self.df[col] = self.df[col].str.strip()
         
-        # Remove outliers using IQR method
         Q1 = self.df['adoption_rate'].quantile(0.25)
         Q3 = self.df['adoption_rate'].quantile(0.75)
         IQR = Q3 - Q1
@@ -71,7 +62,7 @@ class AIAdoptionAnalyzer:
                                             bins=[0, 25, 50, 75, 100], 
                                             labels=['Low', 'Medium', 'High', 'Very High'])
         
-        # Create engagement metrics
+        # engagement metrics
         if 'daily_active_users' in self.df.columns and 'adoption_rate' in self.df.columns:
             self.df['engagement_score'] = (self.df['daily_active_users'] * 
                                          self.df['adoption_rate'] / 100)
@@ -134,7 +125,7 @@ class AIAdoptionAnalyzer:
         plt.tight_layout()
         plt.show()
         
-        # Print statistical summary
+        # Print stats summary
         print("\n=== STATISTICAL SUMMARY ===")
         print(self.df['adoption_rate'].describe())
         
@@ -146,14 +137,14 @@ class AIAdoptionAnalyzer:
         numeric_cols = self.df.select_dtypes(include=[np.number]).columns
         correlation_matrix = self.df[numeric_cols].corr()
         
-        # Plot heatmap
+        #Heatmap
         plt.figure(figsize=(10, 8))
         sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', center=0,
                    square=True, linewidths=0.5)
         plt.title('Correlation Matrix - AI Adoption Metrics')
         plt.show()
         
-        # Statistical significance testing
+        #Statistical significance testing
         if 'daily_active_users' in self.df.columns:
             corr_coef, p_value = pearsonr(self.df['adoption_rate'], self.df['daily_active_users'])
             print(f"Correlation between adoption_rate and daily_active_users:")
@@ -174,7 +165,6 @@ class AIAdoptionAnalyzer:
         """Advanced predictive modeling with multiple algorithms."""
         print("\n=== PREDICTIVE MODELING ===")
         
-        # Prepare features for modeling
         le = LabelEncoder()
         features_df = self.df.copy()
         
@@ -214,7 +204,7 @@ class AIAdoptionAnalyzer:
         rf_r2 = r2_score(y_test, rf_pred)
         rf_rmse = np.sqrt(mean_squared_error(y_test, rf_pred))
         
-        # Results comparison
+        #Compare results
         results_df = pd.DataFrame({
             'Model': ['Linear Regression', 'Random Forest'],
             'R² Score': [lr_r2, rf_r2],
@@ -259,7 +249,7 @@ class AIAdoptionAnalyzer:
         scaler = StandardScaler()
         cluster_data_scaled = scaler.fit_transform(cluster_data)
         
-        # Determine optimal number of clusters using elbow method
+        # Use elbow method  to determine optimal number of clusters 
         inertias = []
         k_range = range(2, 11)
         for k in k_range:
@@ -276,7 +266,7 @@ class AIAdoptionAnalyzer:
         plt.grid(True)
         plt.show()
         
-        # Perform clustering with optimal k (let's use 4)
+        # Perform clustering with optimal k (k =4)
         optimal_k = 4
         kmeans = KMeans(n_clusters=optimal_k, random_state=42)
         cluster_labels = kmeans.fit_predict(cluster_data_scaled)
@@ -361,14 +351,12 @@ class AIAdoptionAnalyzer:
         return insights
 
 def main():
-    """Main execution function - replace 'your_data.csv' with your actual file path."""
     
-    # Initialize analyzer (you'll need to update this path)
-    print("AI Tool Adoption Analysis - Professional Portfolio Project")
+    # Initialize analyzer
+    print("AI Tool Adoption Analysis")
     print("=" * 60)
     
-    # Note: Replace with your actual CSV file path
-    file_path = "/Users/chideranwana/Downloads/ai_adoption_dataset.csv"  # Update this path
+    file_path = "/Users/chideranwana/Downloads/ai_adoption_dataset.csv" 
     
     try:
         # Initialize analyzer
@@ -386,11 +374,7 @@ def main():
         
     except FileNotFoundError:
         print(f"Error: Could not find the file '{file_path}'")
-        print("Please update the file_path variable with your actual CSV file location.")
-        print("\nExample usage:")
-        print("1. Save your CSV file in the same directory as this script")
-        print("2. Update the file_path variable to match your filename")
-        print("3. Run the script again")
+       
 
 if __name__ == "__main__":
     main()
