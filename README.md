@@ -20,3 +20,28 @@ This project analyzes the [Global AI Tool Adoption Across Industries and Regions
 | user_feedback    | User experience feedback (up to 150 characters)     |String|
 | age_group    | User age categories     | String|
 | company_size    | Organization size( Startup, SME, Enterprose)     | String|
+
+# **Project Specs**
+- Python 3.8+
+- pip or conda package manager
+
+### **Libraries and APIs Used**
+- Pandas: Data manipulation and analysis
+- Numpy: Numerical computing
+- Scikit-learn: Machine learning
+- Seaborn: Statistical data visualization
+- Matplotlib: Static plotting
+- Scipy: Scientific computing
+- Statsmodels: Statistical modeling
+
+# **Key Analysis Components**
+1. **Exploratory Data Analysis(EDA)**
+   - Data Quality Assessment
+   - Descriptive Statistics
+   - Correlation Analysis
+   - Temporal Trends
+2. **Predictive Modeling**
+    - Linear Regression
+    - Random Forest
+    - Gradient Boosting
+    - Time Series Analysis
