@@ -9,6 +9,7 @@ This project analyzes the [Global AI Tool Adoption Across Industries and Regions
 - Statistical analysis fo user feedback sentiment
 
 # **Dataset Information**
+Source: [Github](https://www.kaggle.com/datasets/tfisthis/global-ai-tool-adoption-across-industries)
 | Column  | Description | Type |
 |----------|----------|----------|
 | country    | Country location     | String|
@@ -35,13 +36,58 @@ This project analyzes the [Global AI Tool Adoption Across Industries and Regions
 - Statsmodels: Statistical modeling
 
 # **Key Analysis Components**
-1. **Exploratory Data Analysis(EDA)**
-   - Data Quality Assessment
-   - Descriptive Statistics
-   - Correlation Analysis
-   - Temporal Trends
-2. **Predictive Modeling**
-    - Linear Regression
-    - Random Forest
-    - Gradient Boosting
-    - Time Series Analysis
+## 1. **Exploratory Data Analysis(EDA)**
+   === STATISTICAL SUMMARY ===
+count == 145000.000000
+
+mean == 49.873025
+
+std == 28.842523
+
+min == 0.000000
+
+25% == 24.930000
+
+50%  == 49.760000
+
+75% == 74.840000
+
+max == 100.000000
+
+Name: adoption_rate, dtype: float64
+
+## 2. **Correlation Analysis**
+Correlation between adoption_rate and daily_active_users:
+
+Correlation coefficient: 0.0022
+
+P-value: 0.4102
+
+Statistically significant: No
+
+Chi-square test (Industry vs Adoption Category):
+
+Chi-square statistic: 15.8907
+
+P-value: 0.7758
+
+Degrees of freedom: 21
+
+## 3. **Predictive Modeling**
+   Model Performance Comparison:
+| Model | R2 Score | RMSE |
+|----------|----------|----------|
+| Linear Regression   | 0.000021     | 28.826764|
+| Random Forest   | -0.080025     | 29.958319|
+
+## 4. **Customer Segmentation Analysis**
+   Cluster Summary:
+|cluster      | adoption_rate|  daily_active_users|  engagement_score|       
+|-------------|--------------|--------------------|------------------|
+|0            |24.017372|         2448.744648|        542.474395|
+|1            |73.359978|        2711.248739 |      1940.632971|
+|2            |76.208598|         7654.859893|       5774.051172|
+|3            |26.152559|        7353.653767 |      1879.072619|
+
+## 5. **Business Intelligence Report**
+-
